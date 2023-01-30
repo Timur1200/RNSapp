@@ -1,0 +1,59 @@
+﻿<Window x:Class="RNSapp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RNSapp"
+        mc:Ignorable="d"
+        Title="Расчет надежности системы" Height="650" Width="1000" Icon="..\..\Resources\Happy.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Menu>
+            <MenuItem Header="Файл">
+                <MenuItem Header="Создать новую схему"></MenuItem>
+                <MenuItem Header="Открыть"></MenuItem>
+                <MenuItem Header="Сохранить"></MenuItem>
+                <MenuItem Header="Сохранить как"></MenuItem>
+                <MenuItem Header="Печать"></MenuItem>
+                <MenuItem Header="Выход"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Данные"></MenuItem>
+            <MenuItem Header="Расчет"></MenuItem>
+            <MenuItem Header="Результаты"></MenuItem>
+            <MenuItem Header="Сервис"></MenuItem>
+            <MenuItem Header="Помощь"></MenuItem>
+        </Menu>
+        <!-- Набор кнопок -->
+        <Grid Grid.Row="1">
+            <StackPanel Margin="5,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+                <Button Click="CreateSchemeClick" ToolTip="Создать новую схему" Height="40" Width="40">
+                    <Image Source="..\..\Resources\bluePlus.png"></Image>
+                </Button>
+                <Button ToolTip="Показать схему" Height="40" Width="40">
+                    <Image Source="..\..\Resources\scheme.png"></Image>
+                </Button>
+                <Button ToolTip="Ввести априорные значения" Height="40" Width="40">
+                    <Image Source="..\..\Resources\redNotepad.png"></Image>
+                </Button>
+                <Button ToolTip="Расчет" Height="40" Width="40">
+                    <Image Source="..\..\Resources\calculations.png"></Image>
+                </Button>
+                <Button ToolTip="Сохранить" Height="40" Width="40">
+                    <Image Source="..\..\Resources\saveIcon.png"></Image>
+                </Button>
+                
+            </StackPanel>
+        </Grid>
+        <!-- Содержимое -->
+        <Grid Grid.Row="2">
+            <Frame Name="WinFrame"></Frame>
+        </Grid>
+
+
+    </Grid>
+</Window>

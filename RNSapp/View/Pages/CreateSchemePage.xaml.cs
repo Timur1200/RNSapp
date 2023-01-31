@@ -23,10 +23,10 @@ namespace RNSapp.View.Pages
         public CreateSchemePage()
         {
             InitializeComponent();
-            abcdY(100);
+            abcdY(150);
             
 
-          // CreateRectangle();
+
 
 
         }                        //                        |--|
@@ -48,14 +48,15 @@ namespace RNSapp.View.Pages
             Add(CreateLine(dx, dy, cx, cy));
             Add(CreateLine(ax, ay, dx, dy));
             Add(CreateLine(bx, by, cx, cy));
-            Add(CreateLine(fx, fy, ex, ey)); // линия
+            Add(CreateLine(fx, fy, ex, ey)); // линия 1
+            Add(CreateLine(fx+70, fy, ex+70, ey)); // линия 2
             TextBlock textBlock = new TextBlock();
             textBlock.Text = number.ToString();
             NumberElement();
             textBlock.Padding = new Thickness(x, y, 0, 0);
             Add(textBlock);
-            
 
+            
 
 
 
@@ -67,6 +68,14 @@ namespace RNSapp.View.Pages
             line.X1 = x1; line.Y1 = y1;
             line.X2= x2; line.Y2 = y2;
             line.Stroke = Brushes.Black;
+            return line;
+        }
+        private Line CreateLine(double x1, double y1, double x2, double y2,Brush brush)
+        {
+            Line line = new Line();
+            line.X1 = x1; line.Y1 = y1;
+            line.X2 = x2; line.Y2 = y2;
+            line.Stroke = brush;
             return line;
         }
         private void Add(UIElement e)
@@ -104,6 +113,7 @@ namespace RNSapp.View.Pages
                 Add(CreateLine(Ax, Ay, Dx, Dy));
                 Add(CreateLine(Bx, By, Cx, Cy));
                 Add(CreateLine(Fx, Fy, Ex, Ey)); // линия
+                Add(CreateLine(Fx + 70, Fy, Ex + 70, Ey)); // линия 2
                 TextBlock textBlock = new TextBlock();
                 textBlock.Text = number.ToString();
                 NumberElement();
@@ -128,34 +138,42 @@ namespace RNSapp.View.Pages
                  //   b = true;
                 }
                 int up = a + Convert.ToInt32(b);
-                
+                abcdX(20);
 
                 int i = 0;
                 int ax = Ax;int ay = Ay;int bx = Bx;int by = By;int cx = Cx;int cy = Cy;int dx = Dx;int dy = Dy;
                 int ex = Ex;int ey = Ey;int fx = Fx;int fy = Fy;int tx = tBlockX;int ty = tBlockY;
-                MessageBox.Show($"{up}");
+               
                 
                 ay = ay + 50 * up; fy = fy + 50 * up; ty = ty + 50 * up;
                 by = by + 50 * up; cy = cy + 50 * up; dy = dy + 50 * up; ey = ey + 50 * up;
-                // up = up - 1;
-                //up = 1;
-                //ax = ax + 70 * up;
-                //bx = bx + 70 * up;
-                //cx = cx + 70 * up;
-                //dx = dx + 70 * up;
-                //ex = ex + 70 * up;
-                //fx = fx + 70 * up;
-                //tx = tx + 70 * up;
+                
+                int max =0;
+                int min=0;
                 while (NumBranches != i)
                 {
+                    if (i == 0)
+                    {
+                        max = fy;
+                    }
                     i++;
                     
                     CreateRectangle(ax,ay,bx,by,cx,cy,dx,dy,fx,fy,ex,ey,tx,ty);
                     ay = ay - 50;by = by - 50;cy=cy - 50;dy= dy- 50;ey = ey - 50;fy= fy - 50;
                     ty = ty - 50;
+                   
+                    if (i == NumBranches)
+                    {
+                        min = fy+50;
+                        Add( CreateLine(fx,min,fx,max));// соединяет все элементы 1
+                        Add(CreateLine(fx+90,min,fx+90,max));
+                        abcdX(20);
+                    }
                 }
-                
+                Add(CreateLine(Fx + 70, Fy, Ex + 70, Ey)); // линия 2
+
             }
+
             abcdX(70);
         }
 
@@ -177,6 +195,11 @@ namespace RNSapp.View.Pages
             {
                 TBoxNumberOfBranches.IsEnabled = true;
             }
+        }
+
+        private void SaveImg(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

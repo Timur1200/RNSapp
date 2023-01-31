@@ -29,9 +29,9 @@
                     <TextBox Width="175"></TextBox>
                 </StackPanel>
                 <Button Click="AddClick" Margin="0,5" Content="Добавить" />
-                <Button Margin="0,5" Content="Перейти на следующую ветвь" />
+                
                 <Button Margin="0,5" Content="Готово" />
-                <Button Margin="0,5" Content="Копировать изображение" />
+                <Button Click="SaveImg" Margin="0,5" Content="Копировать изображение" />
                 <Button Margin="0,5" Content="Отмена" />
 
             </StackPanel>

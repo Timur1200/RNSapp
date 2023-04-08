@@ -136,12 +136,12 @@ namespace RNSapp.View.Pages
                 }
 
                 int a = (NumBranches - 1) / 2;
-                bool b = false;
+               // bool b = false;
                 if (NumBranches % 2 == 0)
                 {
                     //   b = true;
                 }
-                int up = a + Convert.ToInt32(b);
+                int up = 0 ;
                 abcdX(20);
 
                 int i = 0;
@@ -166,14 +166,14 @@ namespace RNSapp.View.Pages
                     i++;
 
                     CreateRectangle(ax, ay, bx, by, cx, cy, dx, dy, fx, fy, ex, ey, tx, ty);
-                    ay = ay - 50; by = by - 50; cy = cy - 50; dy = dy - 50; ey = ey - 50; fy = fy - 50;
-                    ty = ty - 50;
+                    ay = ay + 50; by = by + 50; cy = cy + 50; dy = dy + 50; ey = ey + 50; fy = fy + 50;
+                    ty = ty + 50;
 
                     if (i == NumBranches)
                     {
-                        min = fy + 50;
+                        min = fy + 50-50-50;
                         Add(CreateLine(fx, min, fx, max));// соединяет все элементы 1
-                        Add(CreateLine(fx + 90, min, fx + 90, max));
+                        Add(CreateLine(fx + 90, min, fx + 90 , max));
                         abcdX(20);
                     }
                 }

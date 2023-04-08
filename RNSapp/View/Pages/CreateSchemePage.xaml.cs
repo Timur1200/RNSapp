@@ -207,7 +207,12 @@ namespace RNSapp.View.Pages
 
         private void SaveImg(object sender, RoutedEventArgs e)
         {
-            SaveAsPng(SchemeGrid,"./123.png");
+            var time = DateTime.Now;
+           string path  = DateTime.Now.ToString("dd.MM.yyyy - HH.mm.ss");
+            path = path + ".png";
+            SaveAsPng(SchemeGrid,path);
+            string fullPath = System.IO.Path.GetFullPath("./");
+            MessageBox.Show(fullPath + path, "Изображение сохранено!");
         }
 
         private void ReadyClick(object sender, RoutedEventArgs e)

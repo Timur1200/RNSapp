@@ -1,5 +1,7 @@
-﻿using System;
+﻿using RNSapp.Service;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +26,6 @@ namespace RNSapp.View.Pages
         {
             InitializeComponent();
             abcdY(150);
-            
-
-
-
-
         }                        //                        |--|
         int Ax = 20; int Ay = 20;// прямоугольник 1 точка  |BC|
         int Bx = 20; int By = 50;// 2                      |AD|
@@ -42,21 +39,23 @@ namespace RNSapp.View.Pages
         int number = 1; //  номер элемента
 
 
-        private void CreateRectangle(int ax,int ay,int bx, int by, int cx,int cy,int dx,int dy,int fx,int fy,int ex,int ey,int x,int y)
+        private void CreateRectangle(int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy, int fx, int fy, int ex, int ey, int x, int y)
         {
             Add(CreateLine(ax, ay, bx, by));
             Add(CreateLine(dx, dy, cx, cy));
             Add(CreateLine(ax, ay, dx, dy));
             Add(CreateLine(bx, by, cx, cy));
             Add(CreateLine(fx, fy, ex, ey)); // линия 1
-            Add(CreateLine(fx+70, fy, ex+70, ey)); // линия 2
+            Add(CreateLine(fx + 70, fy, ex + 70, ey)); // линия 2
             TextBlock textBlock = new TextBlock();
+
+            
             textBlock.Text = number.ToString();
             NumberElement();
             textBlock.Padding = new Thickness(x, y, 0, 0);
             Add(textBlock);
 
-            
+
 
 
 
@@ -66,11 +65,11 @@ namespace RNSapp.View.Pages
         {
             Line line = new Line();
             line.X1 = x1; line.Y1 = y1;
-            line.X2= x2; line.Y2 = y2;
+            line.X2 = x2; line.Y2 = y2;
             line.Stroke = Brushes.Black;
             return line;
         }
-        private Line CreateLine(double x1, double y1, double x2, double y2,Brush brush)
+        private Line CreateLine(double x1, double y1, double x2, double y2, Brush brush)
         {
             Line line = new Line();
             line.X1 = x1; line.Y1 = y1;
@@ -80,7 +79,10 @@ namespace RNSapp.View.Pages
         }
         private void Add(UIElement e)
         {
+            Canvas.SetTop(e, 1000);
             SchemeGrid.Children.Add(e);
+
+
         }
         private void abcdY(int y)
         {
@@ -90,7 +92,7 @@ namespace RNSapp.View.Pages
             Dy = Dy + y;
             tBlockY += y;
             Ey = Ey + y;
-            Fy= Fy + y;
+            Fy = Fy + y;
         }
         private void abcdX(int x)
         {
@@ -107,7 +109,8 @@ namespace RNSapp.View.Pages
         {
             if (RBtn1Serial.IsChecked.Value)
             {
-                
+                Element elem = new Element { Number = number, IsParallel = false };
+                Scheme._thisScheme.Elements.Add(elem);
                 Add(CreateLine(Ax, Ay, Bx, By));
                 Add(CreateLine(Dx, Dy, Cx, Cy));
                 Add(CreateLine(Ax, Ay, Dx, Dy));
@@ -119,7 +122,7 @@ namespace RNSapp.View.Pages
                 NumberElement();
                 textBlock.Padding = new Thickness(tBlockX, tBlockY, 0, 0);
                 Add(textBlock);
-                
+
 
             }
             else
@@ -131,42 +134,46 @@ namespace RNSapp.View.Pages
                     MessageBox.Show("Так нельзя!");
                     return;
                 }
+
                 int a = (NumBranches - 1) / 2;
                 bool b = false;
                 if (NumBranches % 2 == 0)
                 {
-                 //   b = true;
+                    //   b = true;
                 }
                 int up = a + Convert.ToInt32(b);
                 abcdX(20);
 
                 int i = 0;
-                int ax = Ax;int ay = Ay;int bx = Bx;int by = By;int cx = Cx;int cy = Cy;int dx = Dx;int dy = Dy;
-                int ex = Ex;int ey = Ey;int fx = Fx;int fy = Fy;int tx = tBlockX;int ty = tBlockY;
-               
-                
+                int ax = Ax; int ay = Ay; int bx = Bx; int by = By; int cx = Cx; int cy = Cy; int dx = Dx; int dy = Dy;
+                int ex = Ex; int ey = Ey; int fx = Fx; int fy = Fy; int tx = tBlockX; int ty = tBlockY;
+
+
                 ay = ay + 50 * up; fy = fy + 50 * up; ty = ty + 50 * up;
                 by = by + 50 * up; cy = cy + 50 * up; dy = dy + 50 * up; ey = ey + 50 * up;
-                
-                int max =0;
-                int min=0;
+
+                int max = 0;
+                int min = 0;
+                Element elem = new Element { Number = number, IsParallel = true, Branches = NumBranches };
+                Scheme._thisScheme.Elements.Add(elem);
                 while (NumBranches != i)
                 {
+
                     if (i == 0)
                     {
                         max = fy;
                     }
                     i++;
-                    
-                    CreateRectangle(ax,ay,bx,by,cx,cy,dx,dy,fx,fy,ex,ey,tx,ty);
-                    ay = ay - 50;by = by - 50;cy=cy - 50;dy= dy- 50;ey = ey - 50;fy= fy - 50;
+
+                    CreateRectangle(ax, ay, bx, by, cx, cy, dx, dy, fx, fy, ex, ey, tx, ty);
+                    ay = ay - 50; by = by - 50; cy = cy - 50; dy = dy - 50; ey = ey - 50; fy = fy - 50;
                     ty = ty - 50;
-                   
+
                     if (i == NumBranches)
                     {
-                        min = fy+50;
-                        Add( CreateLine(fx,min,fx,max));// соединяет все элементы 1
-                        Add(CreateLine(fx+90,min,fx+90,max));
+                        min = fy + 50;
+                        Add(CreateLine(fx, min, fx, max));// соединяет все элементы 1
+                        Add(CreateLine(fx + 90, min, fx + 90, max));
                         abcdX(20);
                     }
                 }
@@ -177,17 +184,17 @@ namespace RNSapp.View.Pages
             abcdX(70);
         }
 
-       
+
         private void NumberElement()
         {
             number += 1;
             TBoxNumberElement.Text = number.ToString();
         }
-        
+
 
         private void RbtnsClick(object sender, RoutedEventArgs e)
         {
-            if (RBtn1Serial.IsChecked== true)
+            if (RBtn1Serial.IsChecked == true)
             {
                 TBoxNumberOfBranches.IsEnabled = false;
             }
@@ -197,9 +204,28 @@ namespace RNSapp.View.Pages
             }
         }
 
+
         private void SaveImg(object sender, RoutedEventArgs e)
         {
+            SaveAsPng(SchemeGrid,"./123.png");
+        }
 
+        private void ReadyClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveAsPng(Grid canvas, string filePath)
+        {
+            RenderTargetBitmap renderBitmap = new RenderTargetBitmap((int)canvas.ActualWidth, (int)canvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
+            renderBitmap.Render(canvas);
+
+            using (FileStream outStream = new FileStream(filePath, FileMode.Create))
+            {
+                PngBitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+                encoder.Save(outStream);
+            }
         }
     }
 }

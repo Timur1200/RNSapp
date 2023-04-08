@@ -34,10 +34,10 @@
                 <Button Click="CreateSchemeClick" ToolTip="Создать новую схему" Height="40" Width="40">
                     <Image Source="..\..\Resources\bluePlus.png"></Image>
                 </Button>
-                <Button ToolTip="Показать схему" Height="40" Width="40">
+                <Button Click="ShowScheme" ToolTip="Показать схему" Height="40" Width="40">
                     <Image Source="..\..\Resources\scheme.png"></Image>
                 </Button>
-                <Button ToolTip="Ввести априорные значения" Height="40" Width="40">
+                <Button Click="EnterValuesClick" ToolTip="Ввести априорные значения" Height="40" Width="40">
                     <Image Source="..\..\Resources\redNotepad.png"></Image>
                 </Button>
                 <Button ToolTip="Расчет" Height="40" Width="40">

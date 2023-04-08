@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using RNSapp.View.Pages;
 using RNSapp.View;
+using System.Drawing;
+using RNSapp.View.Windows;
 
 namespace RNSapp
 {
@@ -33,6 +35,19 @@ namespace RNSapp
         private void CreateSchemeClick(object sender, RoutedEventArgs e)
         {
             WinFrame.Navigate(new CreateSchemePage());
+        }
+
+        private void ShowScheme(object sender, RoutedEventArgs e)
+        {
+           
+            SchemeWindow schemeWindow = new SchemeWindow();
+           schemeWindow.Show();
+           
+        }
+
+        private void EnterValuesClick(object sender, RoutedEventArgs e)
+        {
+            WinFrame.Navigate(new EnterValuesPage());
         }
     }
 }

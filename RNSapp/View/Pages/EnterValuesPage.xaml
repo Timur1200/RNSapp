@@ -1,0 +1,32 @@
+﻿<Page x:Class="RNSapp.View.Pages.EnterValuesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RNSapp.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Loaded="PageLoaded"
+      Title="EnterValuesPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.45*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <ListBox Name="LBoxElement"></ListBox>
+        </Grid>
+        <Grid Grid.Column="1">
+            <TextBlock Margin="15,0" FontSize="22" Foreground="#FF00B3FF" Text="Закон распределения элемента" />
+            <StackPanel Margin="15,40">
+                <RadioButton>Нормальный закон распределения</RadioButton>
+                <RadioButton>Экспоненциальный закон распределения</RadioButton>
+                <RadioButton>Распределение Пуассона</RadioButton>
+                <RadioButton>Распределение Вейбулла</RadioButton>
+            </StackPanel>
+        </Grid>
+
+
+    </Grid>
+</Page>

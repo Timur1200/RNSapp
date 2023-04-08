@@ -25,23 +25,22 @@
                     <TextBox IsReadOnly="True" Name="TBoxNumberElement" Width="75"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" >
-                    <TextBlock Text="Комментарий: " />
-                    <TextBox Width="175"></TextBox>
+                   
                 </StackPanel>
                 <Button Click="AddClick" Margin="0,5" Content="Добавить" />
-                
-                <Button Margin="0,5" Content="Готово" />
-                <Button Click="SaveImg" Margin="0,5" Content="Копировать изображение" />
-                <Button Margin="0,5" Content="Отмена" />
 
+                <Button Click="SaveImg" Margin="0,5" Content="Изображение" />
+
+                
+                <Image Grid.Row="0" x:Name="ImageControl"></Image>
             </StackPanel>
         </Grid >
         <!-- Схема -->
-        
-            <Grid Name="SchemeGrid" Grid.Column="1">
-            <!--<ScrollViewer HorizontalScrollBarVisibility="Visible">
-            </ScrollViewer>-->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible">
+            <Grid ClipToBounds="False"  Name="SchemeGrid" Grid.Column="1"  ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible"  >
+           
+            
         </Grid>
-       
+        </ScrollViewer>
     </Grid>
 </Page>

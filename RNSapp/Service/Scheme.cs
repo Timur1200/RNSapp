@@ -17,6 +17,8 @@ namespace RNSapp.Service
         {
             abcdY(150);
         }
+        public int Number = 0;
+
         //                        |--|
         int Ax = 20; int Ay = 20;// прямоугольник 1 точка  |BC|
         int Bx = 20; int By = 50;// 2                      |AD|
@@ -27,7 +29,7 @@ namespace RNSapp.Service
         int Fx = 0; int Fy = 35;  // перед фигурой  
         int tBlockX = 45; // надпись
         int tBlockY = 35; //
-       public int number = 1; //  номер элемента
+       private int number = 1; //  номер элемента
         public List<UIElement> UIelements= new List<UIElement>();
         public List<Element> Elements = new List<Element>();
         public static Scheme _thisScheme = new Scheme();

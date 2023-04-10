@@ -29,25 +29,48 @@ namespace RNSapp
         {
             InitializeComponent();
             FrameStore.MainFrame = WinFrame;
-            WinFrame.Navigate(new CreateSchemePage());
+            ShowSchemeBtn.IsEnabled = false;
+            EnterValuesBtn.IsEnabled = false;
+            ResultBtn.IsEnabled = false;
+            
         }
-
+        CreateSchemePage _thisScheme;
+        public EnterValuesPage _enterValuesPage;
+        ResultPage _resultPage;
         private void CreateSchemeClick(object sender, RoutedEventArgs e)
         {
-            WinFrame.Navigate(new CreateSchemePage());
+            _thisScheme = new CreateSchemePage();
+            WinFrame.Navigate(_thisScheme);
+            _enterValuesPage = new EnterValuesPage();
+            ShowSchemeBtn.IsEnabled = true;
+            EnterValuesBtn.IsEnabled = true;
         }
 
         private void ShowScheme(object sender, RoutedEventArgs e)
         {
-           
-            SchemeWindow schemeWindow = new SchemeWindow();
-           schemeWindow.Show();
-           
+            WinFrame.Navigate(_thisScheme);
         }
 
         private void EnterValuesClick(object sender, RoutedEventArgs e)
         {
-            WinFrame.Navigate(new EnterValuesPage());
+            WinFrame.Navigate(_enterValuesPage);
+            ResultBtn.IsEnabled = true;
+        }
+
+        private void ResultClick(object sender, RoutedEventArgs e)
+        {
+            var items = EnterValuesPage.elemLaws;
+
+            foreach (var item in items)
+            {
+                if (item.IsReady() == false)
+                {
+                    MessageBox.Show("Нужно заполнить все необходимые поля");
+                    return;
+                }
+            }
+            _resultPage = new ResultPage();
+            WinFrame.Navigate(_resultPage);
         }
     }
 }

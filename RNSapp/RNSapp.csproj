@@ -72,6 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Service\Elem.cs" />
     <Compile Include="Service\Element.cs" />
     <Compile Include="Service\ExpLaw.cs" />
     <Compile Include="Service\ILaw.cs" />
@@ -82,6 +83,9 @@
     <Compile Include="View\Pages\EnterValuesPage.xaml.cs">
       <DependentUpon>EnterValuesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\ResultPage.xaml.cs">
+      <DependentUpon>ResultPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\SchemeWindow.xaml.cs">
       <DependentUpon>SchemeWindow.xaml</DependentUpon>
     </Compile>
@@ -90,6 +94,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\EnterValuesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ResultPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

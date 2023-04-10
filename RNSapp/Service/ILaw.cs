@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace RNSapp.Service
 {
-    internal interface ILaw
+    public interface ILaw
     {
-       
+        StringBuilder Run(int id);
     }
 }

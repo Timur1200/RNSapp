@@ -171,7 +171,7 @@ namespace RNSapp.View.Pages
 
                     if (i == NumBranches)
                     {
-                        min = fy + 50-50-50;
+                        min = fy - 50;
                         Add(CreateLine(fx, min, fx, max));// соединяет все элементы 1
                         Add(CreateLine(fx + 90, min, fx + 90 , max));
                         abcdX(20);
@@ -180,7 +180,7 @@ namespace RNSapp.View.Pages
                 Add(CreateLine(Fx + 70, Fy, Ex + 70, Ey)); // линия 2
 
             }
-
+            Scheme._thisScheme.Number= number-1;
             abcdX(70);
         }
 

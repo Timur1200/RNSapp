@@ -6,14 +6,19 @@
         xmlns:local="clr-namespace:RNSapp"
         mc:Ignorable="d"
         Title="Расчет надежности системы" Height="650" Width="1000" Icon="..\..\Resources\Happy.ico">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <Menu>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="10,0"/>
+            </Style>
+        </Grid.Resources>
+        <!--<Menu>
             <MenuItem Header="Файл">
                 <MenuItem Header="Создать новую схему"></MenuItem>
                 <MenuItem Header="Открыть"></MenuItem>
@@ -27,31 +32,31 @@
             <MenuItem Header="Результаты"></MenuItem>
             <MenuItem Header="Сервис"></MenuItem>
             <MenuItem Header="Помощь"></MenuItem>
-        </Menu>
+        </Menu>-->
         <!-- Набор кнопок -->
         <Grid Grid.Row="1">
             <StackPanel Margin="5,0,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
-                <Button Click="CreateSchemeClick" ToolTip="Создать новую схему" Height="40" Width="40">
+                <Button  Name="CreateSchemeBtn" Click="CreateSchemeClick" ToolTip="Создать новую схему" Height="40" Width="40">
                     <Image Source="..\..\Resources\bluePlus.png"></Image>
                 </Button>
-                <Button Click="ShowScheme" ToolTip="Показать схему" Height="40" Width="40">
+                <Button Name="ShowSchemeBtn" Click="ShowScheme" ToolTip="Показать схему" Height="40" Width="40">
                     <Image Source="..\..\Resources\scheme.png"></Image>
                 </Button>
-                <Button Click="EnterValuesClick" ToolTip="Ввести априорные значения" Height="40" Width="40">
+                <Button Name="EnterValuesBtn" Click="EnterValuesClick" ToolTip="Ввести априорные значения" Height="40" Width="40">
                     <Image Source="..\..\Resources\redNotepad.png"></Image>
                 </Button>
-                <Button ToolTip="Расчет" Height="40" Width="40">
+                <Button Name="ResultBtn" Click="ResultClick" ToolTip="Расчет" Height="40" Width="40">
                     <Image Source="..\..\Resources\calculations.png"></Image>
                 </Button>
-                <Button ToolTip="Сохранить" Height="40" Width="40">
+                <!--<Button ToolTip="Сохранить" Height="40" Width="40">
                     <Image Source="..\..\Resources\saveIcon.png"></Image>
-                </Button>
+                </Button>-->
                 
             </StackPanel>
         </Grid>
         <!-- Содержимое -->
         <Grid Grid.Row="2">
-            <Frame Name="WinFrame"></Frame>
+            <Frame NavigationUIVisibility="Hidden" Name="WinFrame"></Frame>
         </Grid>
 
 

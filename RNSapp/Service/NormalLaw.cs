@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace RNSapp.Service
 {
-    internal class NormalLaw
+    internal class NormalLaw : ILaw
     {
         /// <summary>
         /// σ Сигма, Среднее квадратическое отклонение
         /// </summary>
-        double sigma;
+        public double sigma;
         /// <summary>
         /// T0 Матем.ожидание
         /// </summary>
-        double T0;
+        public double T0;
         /// <summary>
         /// время
         /// </summary>
-        double t;
+       public double t;
         /// <summary>
         /// Плотность нормального распределения
         /// </summary>
@@ -28,6 +28,16 @@ namespace RNSapp.Service
             double a = 1 / (sigma * Math.Sqrt(2*Math.PI));
             double b = (t - T0 * T0) / (2 * Math.Pow(sigma, 2));
             return a * Math.Exp(-b);
+        }
+
+        public StringBuilder Run(int id)
+        {
+            StringBuilder str = new StringBuilder();
+            str.AppendLine($"Элемент №{id}");
+            str.AppendLine($"Закон распределения - нормальный");
+            str.AppendLine($"f = {f()}");
+            str.AppendLine();
+            return str;
         }
     }
 }

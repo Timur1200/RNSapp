@@ -15,18 +15,50 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid>
-            <ListBox Name="LBoxElement"></ListBox>
+            <ListBox SelectionChanged="SelectedItemListBoxClick"  Name="LBoxElement"></ListBox>
         </Grid>
         <Grid Grid.Column="1">
             <TextBlock Margin="15,0" FontSize="22" Foreground="#FF00B3FF" Text="Закон распределения элемента" />
             <StackPanel Margin="15,40">
-                <RadioButton>Нормальный закон распределения</RadioButton>
-                <RadioButton>Экспоненциальный закон распределения</RadioButton>
-                <RadioButton>Распределение Пуассона</RadioButton>
-                <RadioButton>Распределение Вейбулла</RadioButton>
+                <RadioButton Click="Normal_Click" Name="Normal">Нормальный закон распределения</RadioButton>
+                <RadioButton Click="Exp_Click" Name="Exp">Экспоненциальный закон распределения</RadioButton>
+                <RadioButton Click="Poisson_Click" Name="Poisson">Распределение Пуассона</RadioButton>
+                <RadioButton Click="Weibul_Click" Name="Weibul">Распределение Вейбулла</RadioButton>
+                <Grid Margin="0,25">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <StackPanel Name="TextStackPanel">
+                            <TextBlock  Name="TimeText" Text="Время t" />
+                            <TextBlock Name="SigmaText" Text="Среднее квадратическое отклонение σ" />
+                            <TextBlock Name="MatemMText" Text="Математическое ожидание M" />
+                            <TextBlock Name="LambdaText" Text="Интенсивность отказов  λ*10^6" />
+                            <TextBlock Name="aText" Text="Параметр формы а" />
+                            <TextBlock Name="bText" Text="Параметр масштаба b" />
+                            <TextBlock Name="avgText" Text="Среднее число отказов" />
+                            <TextBlock Name="rText"  Text="r отказов" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel Name="TBoxStackPanel">
+                            <TextBox LostFocus="TimeText_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="TimeTextBox" />
+                            <TextBox LostFocus="SigmaTBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="SigmaTBox" />
+                            <TextBox LostFocus="MatemMTBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="MatemMTBox" />
+                            <TextBox LostFocus="LambdaTBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="LambdaTBox" />
+                            <TextBox LostFocus="aTBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="aTBox" />
+                            <TextBox LostFocus="bTBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="bTBox" />
+                            <TextBox LostFocus="avgTBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="avgTBox" />
+                            <TextBox LostFocus="rTBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="rTBox" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
             </StackPanel>
-        </Grid>
+           
 
+        </Grid>
+       
 
     </Grid>
 </Page>

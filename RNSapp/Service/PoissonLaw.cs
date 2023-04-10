@@ -14,11 +14,11 @@ namespace RNSapp.Service
         /// <summary>
         /// среднее число отказов
         /// </summary>
-        double a;
+       public double a;
         /// <summary>
         /// r отказов
         /// </summary>
-        double r;
+       public double r;
         double Factorial(double n)
         {
             if (n == 1) return 1;
@@ -29,6 +29,17 @@ namespace RNSapp.Service
         {
 
             return (Math.Pow(a, r) / Factorial(r)) * Math.Exp(-a);
+        }
+
+        public StringBuilder Run(int id)
+        {
+            StringBuilder str = new StringBuilder();
+            str.AppendLine($"Элемент №{id}");
+            str.AppendLine($"Закон распределения - распределение Пуассона");
+            str.AppendLine($"P = {P()}");
+           
+            str.AppendLine();
+            return str;
         }
     }
 }

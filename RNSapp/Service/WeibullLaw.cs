@@ -12,9 +12,9 @@ namespace RNSapp.Service
 {
     internal class WeibullLaw : ILaw
     {
-        double a;
-        double b;
-        double t;
+        public double a;
+        public double b;
+        public double t;
         public double P()
         {
             double q1 = Math.Pow((t / a), b);
@@ -30,7 +30,17 @@ namespace RNSapp.Service
             return f() / P();
         }
 
-        
+        public StringBuilder Run(int id)
+        {
+            StringBuilder str = new StringBuilder();
+            str.AppendLine($"Элемент №{id}");
+            str.AppendLine($"Закон распределения - закон Вейбулла");
+            str.AppendLine($"f = {f()}");
+            str.AppendLine($"P = {P()}");
+            str.AppendLine($"w = {w()}");
+            str.AppendLine();
+            return str;
+        }
 
     }
 }

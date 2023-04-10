@@ -14,18 +14,18 @@ namespace RNSapp.Service
     {
         public double a;
         public double b;
-        public double t;
-        public double P()
+        public double t;// время
+        public double P()// функция надежности
         {
             double q1 = Math.Pow((t / a), b);
             return Math.Exp(-q1);
         }
-        public double f()
+        public double f() // функция плотности
         {
             double q1 = (b / a) * Math.Pow((t / a), b - 1);
             return q1 * P();
         }
-        public double w()
+        public double w()// интенсивность отказов
         {
             return f() / P();
         }
@@ -35,9 +35,9 @@ namespace RNSapp.Service
             StringBuilder str = new StringBuilder();
             str.AppendLine($"Элемент №{id}");
             str.AppendLine($"Закон распределения - закон Вейбулла");
-            str.AppendLine($"f = {f()}");
-            str.AppendLine($"P = {P()}");
-            str.AppendLine($"w = {w()}");
+            str.AppendLine($"f (функция плотности) = {f()}");
+            str.AppendLine($"P (функция надежности) = {P()}");
+            str.AppendLine($"w (интенсивность отказов) = {w()}");
             str.AppendLine();
             return str;
         }

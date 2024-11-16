@@ -9,5 +9,6 @@ namespace RNSapp.Service
     public interface ILaw
     {
         StringBuilder Run(int id);
+        double P();
     }
 }

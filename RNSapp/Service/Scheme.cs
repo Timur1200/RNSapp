@@ -18,7 +18,10 @@ namespace RNSapp.Service
             abcdY(150);
         }
         public int Number = 0;
-
+        /// <summary>
+        /// список элементов в схеме
+        /// </summary>
+        public List<Elem> elems = new List<Elem>();
         //                        |--|
         int Ax = 20; int Ay = 20;// прямоугольник 1 точка  |BC|
         int Bx = 20; int By = 50;// 2                      |AD|
@@ -32,7 +35,7 @@ namespace RNSapp.Service
        private int number = 1; //  номер элемента
         public List<UIElement> UIelements= new List<UIElement>();
         public List<Element> Elements = new List<Element>();
-        public static Scheme _thisScheme = new Scheme();
+        public static Scheme _thisScheme;
         public void AddClick(bool IsSerial,Element elem)
         {
             if (IsSerial)

@@ -25,7 +25,7 @@ namespace RNSapp.Service
 
             return n * Factorial(n - 1);
         }
-        double P()
+       public double P()
         {
 
             return (Math.Pow(a, r) / Factorial(r)) * Math.Exp(-a);

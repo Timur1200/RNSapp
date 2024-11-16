@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RNSapp.Service;
 
 namespace RNSapp.View.Pages
 {
@@ -26,7 +27,34 @@ namespace RNSapp.View.Pages
         {
             InitializeComponent();
         }
-
+        private double P = 1;
+        private int _currentIndex = 1;
+        private void Calc()
+        {
+            List<Elem> list = new List<Elem>(); 
+            foreach (var item in Scheme._thisScheme.elems)
+            {
+                if (item.Index == 0)
+                {
+                    P = P * item.law.P();
+                }
+                else
+                {
+                    if (_currentIndex == item.Index)
+                    {
+                        list.Add(item);
+                    }
+                    else
+                    {
+                        P = P * Elem.Psys(list);
+                        list = new List<Elem>();
+                        list.Add(item);
+                        _currentIndex = item.Index;
+                    }
+                }
+            }
+        }
+        
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var elems = EnterValuesPage.elemLaws;
@@ -39,6 +67,12 @@ namespace RNSapp.View.Pages
             {
                sb.AppendLine( item.law.Run(item.Id).ToString());
             }
+            sb.AppendLine();
+            sb.AppendLine();
+            Calc();
+            sb.AppendLine("Вероятность безотказной работы системы:" + P);
+            double q = 1 - P;
+            sb.AppendLine("Вероятность отказа работы системы:" + q);
 
             WinForm.SaveFileDialog saveFileDialog1 = new WinForm.SaveFileDialog();
             saveFileDialog1.Filter = "Text Files (*.txt)|*.txt";

@@ -25,6 +25,7 @@ namespace RNSapp.View.Pages
         public CreateSchemePage()
         {
             InitializeComponent();
+            Scheme._thisScheme = new Scheme();
             abcdY(150);
         }                        //                        |--|
         int Ax = 20; int Ay = 20;// прямоугольник 1 точка  |BC|
@@ -37,7 +38,7 @@ namespace RNSapp.View.Pages
         int tBlockX = 45; // надпись
         int tBlockY = 35; //
         int number = 1; //  номер элемента
-
+        int index = 1;
 
         private void CreateRectangle(int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy, int fx, int fy, int ex, int ey, int x, int y)
         {
@@ -111,6 +112,7 @@ namespace RNSapp.View.Pages
             {
                 Element elem = new Element { Number = number, IsParallel = false };
                 Scheme._thisScheme.Elements.Add(elem);
+                Scheme._thisScheme.elems.Add(new Elem(number,0));
                 Add(CreateLine(Ax, Ay, Bx, By));
                 Add(CreateLine(Dx, Dy, Cx, Cy));
                 Add(CreateLine(Ax, Ay, Dx, Dy));
@@ -134,7 +136,13 @@ namespace RNSapp.View.Pages
                     MessageBox.Show("Так нельзя!");
                     return;
                 }
-
+                for (int g = number;g < number + NumBranches; g++)
+                {
+                    
+                    Elem elem1 = new Elem(g,index);
+                    Scheme._thisScheme.elems.Add(elem1);
+                }
+                index++;
                 int a = (NumBranches - 1) / 2;
                // bool b = false;
                 if (NumBranches % 2 == 0)

@@ -35,15 +35,16 @@ namespace RNSapp.View.Pages
             int schemeCount = Scheme._thisScheme.Number;
             if (count != schemeCount)
             {
-                elemLaws= new List<Elem>();
+                //elemLaws= new List<Elem>();
                 LBoxElement.ItemsSource = null;
                 count = Scheme._thisScheme.Number;
-                for (int i = 1; i != count + 1; i++)
-                {
-                    elemLaws.Add(new Elem(i));
-                   
-                }
-                LBoxElement.ItemsSource = elemLaws;
+                //for (int i = 1; i != count + 1; i++)
+                //{
+                //    //elemLaws.Add(new Elem(i));
+
+                //}
+                elemLaws = Scheme._thisScheme.elems;
+                LBoxElement.ItemsSource = Scheme._thisScheme.elems;
             }
             
             if (count == 0)

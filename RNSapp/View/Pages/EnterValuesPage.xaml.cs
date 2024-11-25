@@ -232,7 +232,8 @@ namespace RNSapp.View.Pages
         private void SigmaTBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if ((sender as TextBox).Text.Length == 0) return;
-            double t = Convert.ToDouble((sender as TextBox).Text);
+            string num = (sender as TextBox).Text;
+            double t = Convert.ToDouble(num);
             if (_item.law is NormalLaw) ((NormalLaw)_item.law).sigma = t;
         }
 

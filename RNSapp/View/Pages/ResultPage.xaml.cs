@@ -71,8 +71,8 @@ namespace RNSapp.View.Pages
             sb.AppendLine();
             Calc();
             sb.AppendLine("Вероятность безотказной работы системы:" + P);
-            double q = 1 - P;
-            sb.AppendLine("Вероятность отказа работы системы:" + q);
+            double q = (double)1.00 - (double)P;
+            sb.AppendLine("Вероятность отказа работы системы:" + (double)q);
 
             WinForm.SaveFileDialog saveFileDialog1 = new WinForm.SaveFileDialog();
             saveFileDialog1.Filter = "Text Files (*.txt)|*.txt";

@@ -10,27 +10,21 @@ namespace RNSapp.Service
     {
 
         public double Lambda;
-        private double lambda
-        {
-            get
-            {
-                return Lambda * (10 ^ 6);
-            }
-        }
+        
         public double t;
 
 
         public double f()
         {
-            return lambda * Math.Exp(-lambda * t);
+            return Lambda * Math.Exp(-Lambda * t);
         }
         public double P()
         {
-            return Math.Exp(-lambda * t);
+            return Math.Exp(-Lambda * t);
         }
         public double T0()
         {
-            return 1 / lambda;
+            return 1 / Lambda;
         }
 
         public StringBuilder Run(int id)
@@ -38,9 +32,10 @@ namespace RNSapp.Service
             StringBuilder str = new StringBuilder();
             str.AppendLine($"Элемент №{id}");
             str.AppendLine($"Закон распределения - экспоненциальный");
-            str.AppendLine($"f = {f()}");
+            
             str.AppendLine($"P = {P()}");
-            str.AppendLine($"T0 = {T0()}");
+            str.AppendLine($"lamb = {Lambda}");
+            str.AppendLine($"t = {t}");
             str.AppendLine();
             return str;
         }

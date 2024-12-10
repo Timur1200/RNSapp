@@ -121,8 +121,8 @@ namespace RNSapp.View.Pages
             {
                 Normal.IsChecked = true;
                 Normal_Click(null, null);
-                SigmaTBox.Text = ((NormalLaw)_item.law).sigma.ToString();
-                MatemMTBox.Text = ((NormalLaw)_item.law).T0.ToString();
+                SigmaTBox.Text = ((NormalLaw)_item.law).StandardDeviation.ToString();
+                avgNuTextBox.Text = ((NormalLaw)_item.law).Mean.ToString();
                 TimeTextBox.Text = ((NormalLaw)_item.law).t.ToString();
                 
                
@@ -131,10 +131,13 @@ namespace RNSapp.View.Pages
             {
                 Poisson.IsChecked = true;
                 Poisson_Click(null, null);
-                avgTBox.Text = ((PoissonLaw)_item.law).a.ToString();
-                rTBox.Text = ((PoissonLaw)_item.law).r.ToString();
-               
-               
+                LambdaTBox.Text = ((PoissonLaw)_item.law).lambda.ToString();
+                kTextBox.Text = ((PoissonLaw)_item.law).K.ToString();
+                
+                //avgTBox.Text = ((PoissonLaw)_item.law).a.ToString();
+                //rTBox.Text = ((PoissonLaw)_item.law).r.ToString();
+
+
             }
 
 
@@ -164,6 +167,7 @@ namespace RNSapp.View.Pages
                     ((TextBlock)element).Visibility = Visibility.Collapsed;
                 }
             }
+            SigmaText.Text = "Среднее квадратическое отклонение σ";
         }
 
         #region Когда нажимают на radion button
@@ -174,7 +178,8 @@ namespace RNSapp.View.Pages
             offAllTextBox();
             SigmaTBox.Visibility = Visibility.Visible;SigmaText.Visibility= Visibility.Visible;
             TimeTextBox.Visibility = Visibility.Visible;TimeText.Visibility= Visibility.Visible;
-            MatemMTBox.Visibility = Visibility.Visible;MatemMText.Visibility= Visibility.Visible;
+            avgNuTextBox.Visibility = Visibility.Visible; avgNuText.Visibility= Visibility.Visible;
+            SigmaText.Text = "стандартное отклонение времени безотказной работы";
         }
 
         private void Exp_Click(object sender, RoutedEventArgs e)
@@ -191,8 +196,13 @@ namespace RNSapp.View.Pages
             if (LBoxElement.SelectedItem == null) return;
             BaseRbtnClick();
             offAllTextBox();
-            avgTBox.Visibility = Visibility.Visible;avgText.Visibility= Visibility.Visible;
-            rTBox.Visibility = Visibility.Visible;rText.Visibility = Visibility.Visible;
+            //avgTBox.Visibility = Visibility.Visible;avgText.Visibility= Visibility.Visible;
+            //rTBox.Visibility = Visibility.Visible;rText.Visibility = Visibility.Visible;
+            kTextBox.Visibility = Visibility.Visible;kText.Visibility = Visibility.Visible;
+            LambdaTBox.Visibility = Visibility.Visible; LambdaText.Visibility = Visibility.Visible;
+            //TimeTextBox.Visibility = Visibility.Visible;TimeText.Visibility = Visibility.Visible;
+
+
 
         }
 
@@ -227,6 +237,7 @@ namespace RNSapp.View.Pages
             if (_item.law is NormalLaw) ((NormalLaw)_item.law).t = t;
             if (_item.law is WeibullLaw) ((WeibullLaw)_item.law).t = t;
             if (_item.law is ExpLaw) ((ExpLaw)_item.law).t = t;
+            
         }
 
         private void SigmaTBox_LostFocus(object sender, RoutedEventArgs e)
@@ -234,14 +245,14 @@ namespace RNSapp.View.Pages
             if ((sender as TextBox).Text.Length == 0) return;
             string num = (sender as TextBox).Text;
             double t = Convert.ToDouble(num);
-            if (_item.law is NormalLaw) ((NormalLaw)_item.law).sigma = t;
+            if (_item.law is NormalLaw) ((NormalLaw)_item.law).StandardDeviation = t;
         }
 
         private void MatemMTBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if ((sender as TextBox).Text.Length == 0) return;
             double t = Convert.ToDouble((sender as TextBox).Text);
-            if (_item.law is NormalLaw) ((NormalLaw)_item.law).T0 = t;
+            
         }
 
         private void LambdaTBox_LostFocus(object sender, RoutedEventArgs e)
@@ -249,6 +260,7 @@ namespace RNSapp.View.Pages
             if ((sender as TextBox).Text.Length == 0) return;
             double t = Convert.ToDouble((sender as TextBox).Text);
             if (_item.law is ExpLaw) ((ExpLaw)_item.law).Lambda = t;
+            if (_item.law is PoissonLaw) ((PoissonLaw)_item.law).lambda = t;
         }
 
         private void aTBox_LostFocus(object sender, RoutedEventArgs e)
@@ -269,15 +281,29 @@ namespace RNSapp.View.Pages
         {
             if ((sender as TextBox).Text.Length == 0) return;
             double t = Convert.ToDouble((sender as TextBox).Text);
-            if (_item.law is PoissonLaw) ((PoissonLaw)_item.law).a = t;
+            //if (_item.law is PoissonLaw) ((PoissonLaw)_item.law).a = t;
         }
 
         private void rTBox_LostFocus(object sender, RoutedEventArgs e)
         {
             if ((sender as TextBox).Text.Length == 0) return;
             double t = Convert.ToDouble((sender as TextBox).Text);
-            if (_item.law is PoissonLaw) ((PoissonLaw)_item.law).r = t;
+            //if (_item.law is PoissonLaw) ((PoissonLaw)_item.law).r = t;
         }
         #endregion
+
+        private void avgNuTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if ((sender as TextBox).Text.Length == 0) return;
+            double t = Convert.ToDouble((sender as TextBox).Text);
+            if (_item.law is NormalLaw) ((NormalLaw)_item.law).Mean = t;
+        }
+
+        private void kTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if ((sender as TextBox).Text.Length == 0) return;
+            int t = Convert.ToInt32((sender as TextBox).Text);
+            if (_item.law is PoissonLaw) ((PoissonLaw)_item.law).K = t;
+        }
     }
 }

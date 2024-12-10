@@ -23,7 +23,7 @@
                 <RadioButton Click="Normal_Click" Name="Normal">Нормальный закон распределения</RadioButton>
                 <RadioButton Click="Exp_Click" Name="Exp">Экспоненциальный закон распределения</RadioButton>
                 <RadioButton Click="Poisson_Click" Name="Poisson">Распределение Пуассона</RadioButton>
-                <RadioButton Click="Weibul_Click" Name="Weibul">Распределение Вейбулла</RadioButton>
+                <RadioButton Visibility="Collapsed" Click="Weibul_Click" Name="Weibul">Распределение Вейбулла</RadioButton>
                 <Grid Margin="0,25">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -39,6 +39,8 @@
                             <TextBlock Name="bText" Text="Параметр масштаба b" />
                             <TextBlock Name="avgText" Text="Среднее число отказов" />
                             <TextBlock Name="rText"  Text="r отказов" />
+                            <TextBlock Name="avgNuText"  Text="μ среднее значение безотказной работы" />
+                            <TextBlock Name="kText"  Text="k количетсво событий" />
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -51,6 +53,8 @@
                             <TextBox LostFocus="bTBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="bTBox" />
                             <TextBox LostFocus="avgTBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="avgTBox" />
                             <TextBox LostFocus="rTBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput" Name="rTBox" />
+                            <TextBox Name="avgNuTextBox" LostFocus="avgNuTextBox_LostFocus" PreviewTextInput="textBox_PreviewTextInput"  />
+                            <TextBox LostFocus="kTextBox_LostFocus" Name="kTextBox" ></TextBox>
                         </StackPanel>
                     </Grid>
                 </Grid>
